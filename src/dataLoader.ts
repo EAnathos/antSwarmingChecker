@@ -15,8 +15,7 @@ export const loadData = () => {
   speciesByDate = JSON.parse(dateData);
 };
 
-export const getSpeciesByRegion = (region: number): string[] => {
-  console.log(speciesByRegion[region])
+export const getSpeciesByRegion = (region: string): string[] => {
   return speciesByRegion[region] || [];
 };
 
