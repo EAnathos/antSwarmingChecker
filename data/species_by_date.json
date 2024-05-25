@@ -1,15 +1,34 @@
 {
-    "janvier": [
-        "Espèce A",
-        "Espèce C"
-    ],
-    "février": [
-        "Espèce B",
-        "Espèce D"
-    ],
+    "janvier": [],
+    "février": [],
     "mars": [],
-    "avril": [],
-    "mai": [],
+    "avril": [
+        "Camponotus fallax",
+        "Camponotus lateralis",
+        "Camponotus vagus",
+        "Formica polyctena",
+        "Formica pratensis",
+        "Formica rufa",
+        "Messor structor"
+    ],
+    "mai": [
+        "Camponotus aethiops",
+        "Camponotus lateralis",
+        "Camponotus piceus",
+        "Camponotus vagus",
+        "Formica lemani",
+        "Formica lugubris",
+        "Formica polyctena",
+        "Formica pratensis",
+        "Lasius alienus",
+        "Lasius brunneus",
+        "Lasius fuliginosus",
+        "Leptothorax niger",
+        "Messor structor",
+        "Tapinoma erraticum",
+        "Tapinoma nigerrimum",
+        "Tetramorium caespitum (groupe)"
+    ],
     "juin": [],
     "juillet": [],
     "août": [],
