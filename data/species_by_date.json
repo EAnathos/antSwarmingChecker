@@ -1,4 +1,20 @@
 {
-    "01": ["Espèce A", "Espèce B"],
-    "02": ["Espèce C", "Espèce D"]
+    "janvier": [
+        "Espèce A",
+        "Espèce C"
+    ],
+    "février": [
+        "Espèce B",
+        "Espèce D"
+    ],
+    "mars": [],
+    "avril": [],
+    "mai": [],
+    "juin": [],
+    "juillet": [],
+    "août": [],
+    "septembre": [],
+    "octobre": [],
+    "novembre": [],
+    "décembre": []
 }
