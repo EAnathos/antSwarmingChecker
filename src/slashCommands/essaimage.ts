@@ -12,9 +12,9 @@ export const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("essaimage")
     .setDescription("Liste les essaimages d'une région selon une date")
-    .addIntegerOption(option =>
+    .addStringOption(option =>
       option.setName("region")
-        .setDescription("Indiquer la région en question (en nombre, exemple: 75 pour Paris)")
+        .setDescription("Indiquer la région en question (en nombre, exemple: 01 pour Ain)")
         .setRequired(true)
     )
     .addStringOption(option =>
@@ -26,7 +26,7 @@ export const command: SlashCommand = {
     const options = interaction.options as CommandInteractionOptionResolver;
 
     let month = options.getString("mois");
-    const location = options.getInteger("region")!;
+    const location = options.getString("region")!;
 
     if (!month) {
       const currentMonthIndex = new Date().getMonth();
