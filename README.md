@@ -1,18 +1,20 @@
-# Create a Discord Bot with discord.js 14
+# AntSwarmingChecker
 
-This is a basic TypeScript template for creating a Discord bot using discord.js 14. It is a fork of https://github.com/pentiminax/discord-js-bot-v14.
+Ce bot Discord Français et Open-Source vous permet de trouver les espèces de fourmis qui essaiment dans votre région.
 
-## Getting Started
+## Comment utiliser ce bot
 
-1. Clone this repository
-2. Install dependencies with `npm install`
-3. Fill `.env` with your bot token and other information.
-4. Run the bot with `npm run start`
+1. Cloner ce repository
+2. Installez les dépendances avec `npm install`
+3. Remplissez `.env` avec le token de votre bot et les autres informations demandées.
+4. Compilez les fichiers TypeScript en Javascript avec la commande `npx tsc`, l'option --watch permet de lancer la compilation en démon.
+5. Lancer le bot avec `npm run start`
 
-## Contributing
+## Contribution
 
-Contributions are welcome! Please open an issue or pull request if you have any suggestions or bug fixes.
+Les contributions au code seront analysées, n'hésitez pas à faire des pull requests si vous avez la moindre suggestion ou fix de bugs.
+Vous pouvez aussi ajouter des informations aux datas concernant les dates d'essaimages.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Ce projet est sous la licence MIT License - regardez le fichier [LICENSE](LICENSE) pour plus de détails.
