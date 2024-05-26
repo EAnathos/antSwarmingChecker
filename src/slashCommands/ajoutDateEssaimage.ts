@@ -1,11 +1,8 @@
 import { SlashCommandBuilder, CommandInteractionOptionResolver } from 'discord.js';
 import { SlashCommand } from '../types';
-import { getSpeciesByRegion, getSpeciesByDate, addSpecieByDate } from '../dataLoader';
+import { addSpecieByDate } from '../dataLoader';
 
-const frenchMonths = [
-  "janvier", "février", "mars", "avril", "mai", "juin",
-  "juillet", "août", "septembre", "octobre", "novembre", "décembre"
-];
+const whitelistUsers = ["306816615650033664"]
 
 export const command: SlashCommand = {
   name: 'ajouteDateEssaimage',
@@ -23,6 +20,14 @@ export const command: SlashCommand = {
         .setRequired(true)
     ),
   execute: async (interaction) => {
+    if (!whitelistUsers.includes(interaction.user.id)) {
+      await interaction.reply({
+        content: "Vous n'avez pas la permission d'utiliser cette commande.",
+        ephemeral: true
+      });
+      return;
+    }
+
     const options = interaction.options as CommandInteractionOptionResolver;
 
     const ant = options.getString("fourmis")!;
