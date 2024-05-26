@@ -22,3 +22,32 @@ export const getSpeciesByRegion = (region: string): string[] => {
 export const getSpeciesByDate = (month: string): string[] => {
   return speciesByDate[month.toLowerCase()] || [];
 };
+
+export const addSpecieByDate = (month: string, specie: string) => {
+  const monthLower = month.toLowerCase();
+
+  if (!speciesByDate[monthLower]) {
+    speciesByDate[monthLower] = [];
+  }
+
+  speciesByDate[monthLower].push(specie);
+
+  dateDataSave();
+}
+
+export const removeSpecieByDate = (month: string, specie: string) => {
+  const monthLower = month.toLowerCase();
+
+  if (!speciesByDate[monthLower]) {
+    return;
+  }
+
+  speciesByDate[monthLower] = speciesByDate[monthLower].filter(s => s !== specie);
+
+  dateDataSave();
+}
+
+export const dateDataSave = () => {
+  const dateDataPath = path.join('./data', 'species_by_date.json');
+  fs.writeFileSync(dateDataPath, JSON.stringify(speciesByDate));
+}
