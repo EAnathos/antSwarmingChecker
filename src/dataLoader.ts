@@ -34,7 +34,11 @@ export const loadData = () => {
  * @param {string} region - The name of the region.
  * @returns {string[]} The list of species in the specified region.
  */
-export const getSpeciesByRegion = (region: string): string[] => {
+export const getSpeciesByRegion = (region: string | null): string[] | null => {
+  if (!region) {
+    return null;
+  }
+
   return speciesByRegion[region] || [];
 };
 
@@ -44,9 +48,13 @@ export const getSpeciesByRegion = (region: string): string[] => {
  * @param {string} month - The name of the month.
  * @returns {string[]} The list of species in the specified month.
  */
-export const getSpeciesByDate = (month: string): string[] => {
-  return speciesByDate[month.toLowerCase()] || [];
-};
+export const getSpeciesByDate = (month: string | null): string[] | null => {
+  if (!month) {
+    return null;
+  }
+
+  return speciesByDate[month] || [];
+}
 
 /**
  * Add a species to the list for a given month and save the updated data.
