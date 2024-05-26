@@ -35,11 +35,11 @@ export const loadData = () => {
  * @returns {string[]} The list of species in the specified region.
  */
 export const getSpeciesByRegion = (region: string | null): string[] | null => {
-  if (!region || region.length == 0) {
+  if (!region) {
     return null;
   }
 
-  return speciesByRegion[region] || [];
+  return speciesByRegion[region] || null;
 };
 
 /**
@@ -49,11 +49,11 @@ export const getSpeciesByRegion = (region: string | null): string[] | null => {
  * @returns {string[]} The list of species in the specified month.
  */
 export const getSpeciesByDate = (month: string | null): string[] | null => {
-  if (!month || month.length == 0) {
+  if (!month) {
     return null;
   }
 
-  return speciesByDate[month] || [];
+  return speciesByDate[month] || null;
 }
 
 /**
