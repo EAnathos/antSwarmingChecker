@@ -96,13 +96,13 @@ export const command: SlashCommand = {
       const regionSpecies = getSpeciesByRegion(location);
       if (!regionSpecies) {
         await interaction.reply(
-          `Aucun essaimage n'est prévu pour la région \`${location}\`.`
+          `Aucune espèce n'essaimage dans la région \`${location}\`.`
         );
         return;
       }
 
       await interaction.reply(
-        `**Les essaimages prévus pour la région \`${location}\` sont:**\n*  ${regionSpecies!.join(
+        `**Les essaimages possibles pour la région \`${location}\` sont:**\n*  ${regionSpecies!.join(
           "\n* "
         )}.`
       );
