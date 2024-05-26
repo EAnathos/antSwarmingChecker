@@ -7,7 +7,7 @@ const whitelistUsers = ["306816615650033664"]
 export const command: SlashCommand = {
   name: 'ajoutDateEssaimage',
   data: new SlashCommandBuilder()
-    .setName("ajoutDateEssaimage")
+    .setName("ajoutdateessaimage")
     .setDescription("Ajoute une date d'essaimage pour une espèce donnée")
     .addStringOption(option =>
       option.setName("fourmis")
