@@ -5,9 +5,9 @@ import { removeSpecieByDate } from '../dataLoader';
 const whitelistUsers = ["306816615650033664"]
 
 export const command: SlashCommand = {
-  name: 'ajouteDateEssaimage',
+  name: 'retireDateEssaimage',
   data: new SlashCommandBuilder()
-    .setName("ajouteDateEssaimage")
+    .setName("retireDateEssaimage")
     .setDescription("Retire une date d'essaimage pour une espèce donnée")
     .addStringOption(option =>
       option.setName("fourmis")
