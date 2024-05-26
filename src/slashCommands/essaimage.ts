@@ -96,7 +96,7 @@ export const command: SlashCommand = {
       const regionSpecies = getSpeciesByRegion(location);
       if (!regionSpecies) {
         await interaction.reply(
-          `Aucune espèce n'essaimage dans la région \`${location}\`.`
+          `Aucune espèce n'essaime dans la région \`${location}\`.`
         );
         return;
       }
