@@ -35,7 +35,7 @@ export const loadData = () => {
  * @returns {string[]} The list of species in the specified region.
  */
 export const getSpeciesByRegion = (region: string | null): string[] | null => {
-  if (!region) {
+  if (!region || region.length == 0) {
     return null;
   }
 
@@ -49,7 +49,7 @@ export const getSpeciesByRegion = (region: string | null): string[] | null => {
  * @returns {string[]} The list of species in the specified month.
  */
 export const getSpeciesByDate = (month: string | null): string[] | null => {
-  if (!month) {
+  if (!month || month.length == 0) {
     return null;
   }
 
