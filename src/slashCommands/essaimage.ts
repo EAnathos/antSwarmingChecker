@@ -87,30 +87,33 @@ export const command: SlashCommand = {
       }
 
       await interaction.reply(
-        `Les essaimages prévus pour le mois de ${month} sont: ${dateSpecies!.join(
-          ", "
+        `**Les essaimages prévus pour le mois de \`${month}\` sont:**\n*  ${dateSpecies!.join(
+          "\n* "
         )}.`
       );
+      return;
     } else if (!month && location) {
       const regionSpecies = getSpeciesByRegion(location);
       if (!regionSpecies) {
         await interaction.reply(
-          `Aucun essaimage n'est prévu pour la région ${location}.`
+          `Aucun essaimage n'est prévu pour la région \`${location}\`.`
         );
+        return;
       }
 
       await interaction.reply(
-        `Les essaimages prévus pour la région ${location} sont: ${regionSpecies!.join(
-          ", "
+        `**Les essaimages prévus pour la région \`${location}\` sont:**\n*  ${regionSpecies!.join(
+          "\n* "
         )}.`
       );
+      return;
     } else {
       const regionSpecies = getSpeciesByRegion(location);
       const dateSpecies = getSpeciesByDate(month!);
 
       if (!regionSpecies || !dateSpecies) {
         await interaction.reply(
-          `Aucun essaimage n'est prévu pour la région ${location} et le mois de ${month}.`
+          `Aucun essaimage n'est prévu pour la région \`${location}\` et le mois de \`${month}\`.`
         );
         return;
       }
@@ -121,14 +124,16 @@ export const command: SlashCommand = {
 
       if (species.length === 0) {
         await interaction.reply(
-          `Aucun essaimage n'est prévu pour la région ${location} et le mois de ${month}.`
+          `Aucun essaimage n'est prévu pour la région \`${location}\` et le mois de \`${month}\`.`
         );
+        return;
       } else {
         await interaction.reply(
-          `Les essaimages prévus pour la région ${location} et le mois de ${month} sont: ${species.join(
-            ", "
+          `**Les essaimages prévus pour la région \`${location}\` et le mois de \`${month}\` sont:**\n*  ${species.join(
+            "\n* "
           )}.`
         );
+        return;
       }
     }
   },
