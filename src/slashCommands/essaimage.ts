@@ -24,7 +24,7 @@ export const command: SlashCommand = {
   name: "essaimage",
   data: new SlashCommandBuilder()
     .setName("essaimage")
-    .setDescription("Liste les essaimages d'une région selon une date")
+    .setDescription("Liste les essaimages d'un département selon une date")
     .addStringOption(
       (
         option // Adding option for region
@@ -32,7 +32,7 @@ export const command: SlashCommand = {
         option
           .setName("region")
           .setDescription(
-            "Indiquer la région en question (en nombre, exemple: 01 pour Ain)"
+            "Indiquer le département en question (en nombre, exemple: 01 pour Ain)"
           )
           .setRequired(false)
     )
@@ -64,14 +64,14 @@ export const command: SlashCommand = {
     if (location) {
       if (location.length !== 2) {
         await interaction.reply(
-          "Veuillez indiquer un numéro de région valide."
+          "Veuillez indiquer un numéro de département valide."
         );
         return;
       }
     }
 
     if (!location && !month) {
-      await interaction.reply("Veuillez indiquer une région ou un mois.");
+      await interaction.reply("Veuillez indiquer un département ou un mois.");
       return;
     }
 
@@ -94,13 +94,13 @@ export const command: SlashCommand = {
       const regionSpecies = getSpeciesByRegion(location);
       if (!regionSpecies) {
         await interaction.reply(
-          `Aucune espèce n'essaime dans la région \`${location}\`.`
+          `Aucune espèce n'essaime dans le département \`${location}\`.`
         );
         return;
       }
 
       await interaction.reply(
-        `**Les essaimages possibles pour la région \`${location}\` sont:**\n*  *${regionSpecies!.join(
+        `**Les essaimages possibles pour le département \`${location}\` sont:**\n*  *${regionSpecies!.join(
           "*\n* *"
         )}*`
       );
@@ -111,7 +111,7 @@ export const command: SlashCommand = {
 
       if (!regionSpecies || !dateSpecies) {
         await interaction.reply(
-          `Aucun essaimage n'est prévu pour la région \`${location}\` et le mois de \`${month}\`.`
+          `Aucun essaimage n'est prévu pour le département \`${location}\` et le mois de \`${month}\`.`
         );
         return;
       }
@@ -122,12 +122,12 @@ export const command: SlashCommand = {
 
       if (species.length === 0) {
         await interaction.reply(
-          `Aucun essaimage n'est prévu pour la région \`${location}\` et le mois de \`${month}\`.`
+          `Aucun essaimage n'est prévu pour le département \`${location}\` et le mois de \`${month}\`.`
         );
         return;
       } else {
         await interaction.reply(
-          `**Les essaimages prévus pour la région \`${location}\` et le mois de \`${month}\` sont:**\n* *${species.join(
+          `**Les essaimages prévus pour le département \`${location}\` et le mois de \`${month}\` sont:**\n* *${species.join(
             "*\n* *"
           )}*`
         );
