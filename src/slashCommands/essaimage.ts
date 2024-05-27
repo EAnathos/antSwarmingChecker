@@ -21,7 +21,7 @@ const frenchMonths = [
   "décembre",
 ];
 
-async function predictSwarmingByMonthAndLocation(month :string, location :string, interaction :CommandInteraction) {
+async function predictSwarmingByMonthAndLocation(month :string, location :string, interaction :any) {
   const regionSpecies = getSpeciesByRegion(location);
   const dateSpecies = getSpeciesByDate(month!);
 
@@ -46,7 +46,7 @@ async function predictSwarmingByMonthAndLocation(month :string, location :string
   );
 }
 
-async function predictSwarmingByMonth(month :string, interaction :CommandInteraction) {
+async function predictSwarmingByMonth(month :string, interaction :any) {
   const dateSpecies = getSpeciesByDate(month);
   if (!dateSpecies)
     return await interaction.reply(
@@ -60,7 +60,7 @@ async function predictSwarmingByMonth(month :string, interaction :CommandInterac
   );
 }
 
-async function predictSwarmingByLocation(location :string, interaction :CommandInteraction) {
+async function predictSwarmingByLocation(location :string, interaction :any) {
   const regionSpecies = getSpeciesByRegion(location);
   if (!regionSpecies)
     return await interaction.reply(
@@ -120,7 +120,7 @@ export const command: SlashCommand = {
       return await interaction.reply("Veuillez indiquer un département ou un mois.");
 
     if (location && month)
-      predictSwarmingByMonthAndLocation(month, location, interaction);
+      return predictSwarmingByMonthAndLocation(month, location, interaction);
     
     if (month)
       return predictSwarmingByMonth(month, interaction);
