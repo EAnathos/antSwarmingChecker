@@ -17,7 +17,7 @@ export const command: SlashCommand = {
     )
     .addStringOption(option => // Adding option for month
       option.setName("mois")
-        .setDescription("Indiquer le mois en question (en lettre, exemple: janvier)")
+        .setDescription("Indiquer le mois en question (en lettre, exemple : janvier)")
         .setRequired(true)
     ),
   execute: async (interaction) => {

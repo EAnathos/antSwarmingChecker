@@ -32,7 +32,7 @@ export const command: SlashCommand = {
         option
           .setName("region")
           .setDescription(
-            "Indiquer le département en question (en nombre, exemple: 01 pour Ain)"
+            "Indiquer le département en question (en nombre, exemple : 01 pour Ain)"
           )
           .setRequired(false)
     )
@@ -43,7 +43,7 @@ export const command: SlashCommand = {
         option
           .setName("mois")
           .setDescription(
-            "Indiquer le mois en question (en lettre, exemple: janvier)"
+            "Indiquer le mois en question (en lettre, exemple : janvier)"
           )
           .setRequired(false)
     ),
@@ -85,7 +85,7 @@ export const command: SlashCommand = {
       }
 
       await interaction.reply(
-        `**Les essaimages prévus pour le mois de \`${month}\` sont:**\n*  *${dateSpecies!.join(
+        `**Les essaimages prévus pour le mois de \`${month}\` sont :**\n*  *${dateSpecies!.join(
           "*\n* *"
         )}*`
       );
@@ -100,7 +100,7 @@ export const command: SlashCommand = {
       }
 
       await interaction.reply(
-        `**Les essaimages possibles pour le département \`${location}\` sont:**\n*  *${regionSpecies!.join(
+        `**Les essaimages possibles pour le département \`${location}\` sont :**\n*  *${regionSpecies!.join(
           "*\n* *"
         )}*`
       );
@@ -127,7 +127,7 @@ export const command: SlashCommand = {
         return;
       } else {
         await interaction.reply(
-          `**Les essaimages prévus pour le département \`${location}\` et le mois de \`${month}\` sont:**\n* *${species.join(
+          `**Les essaimages prévus pour le département \`${location}\` et le mois de \`${month}\` sont :**\n* *${species.join(
             "*\n* *"
           )}*`
         );
