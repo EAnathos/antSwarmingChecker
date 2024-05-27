@@ -54,8 +54,6 @@ export const command: SlashCommand = {
     let month = options.getString("mois")?.toLocaleLowerCase();
     const location = options.getString("region");
 
-    let message: string;
-
     if (month) {
       if (!frenchMonths.includes(month)) {
         await interaction.reply("Veuillez indiquer un mois valide.");
@@ -87,9 +85,9 @@ export const command: SlashCommand = {
       }
 
       await interaction.reply(
-        `**Les essaimages prévus pour le mois de \`${month}\` sont:**\n*  ${dateSpecies!.join(
-          "\n* "
-        )}.`
+        `**Les essaimages prévus pour le mois de \`${month}\` sont:**\n*  *${dateSpecies!.join(
+          "*\n* *"
+        )}*`
       );
       return;
     } else if (!month && location) {
@@ -102,9 +100,9 @@ export const command: SlashCommand = {
       }
 
       await interaction.reply(
-        `**Les essaimages possibles pour la région \`${location}\` sont:**\n*  ${regionSpecies!.join(
-          "\n* "
-        )}.`
+        `**Les essaimages possibles pour la région \`${location}\` sont:**\n*  *${regionSpecies!.join(
+          "*\n* *"
+        )}*`
       );
       return;
     } else {
@@ -129,9 +127,9 @@ export const command: SlashCommand = {
         return;
       } else {
         await interaction.reply(
-          `**Les essaimages prévus pour la région \`${location}\` et le mois de \`${month}\` sont:**\n*  ${species.join(
-            "\n* "
-          )}.`
+          `**Les essaimages prévus pour la région \`${location}\` et le mois de \`${month}\` sont:**\n* *${species.join(
+            "*\n* *"
+          )}*`
         );
         return;
       }

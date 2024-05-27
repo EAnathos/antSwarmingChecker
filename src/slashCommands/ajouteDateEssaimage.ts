@@ -6,7 +6,7 @@ import { addSpecieByDate } from '../dataLoader';
 const whitelistUsers = ["306816615650033664"]
 
 export const command: SlashCommand = {
-  name: 'ajoutDateEssaimage',
+  name: 'ajoutdateessaimage',
   data: new SlashCommandBuilder()
     .setName("ajoutdateessaimage")
     .setDescription("Ajoute une date d'essaimage pour une espèce donnée")
