@@ -1,6 +1,6 @@
 # AntSwarmingChecker
 
-Ce bot Discord français et Open-Source vous permet de trouver les espèces de fourmi qui essaiment dans votre région.
+Ce bot Discord français et Open-Source vous permet de trouver les espèces de fourmi qui essaiment dans votre département.
 
 ## Comment utiliser ce bot
 
