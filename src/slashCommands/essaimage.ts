@@ -1,6 +1,7 @@
 import {
   SlashCommandBuilder,
   CommandInteractionOptionResolver,
+  CommandInteraction,
 } from "discord.js";
 import { SlashCommand } from "../types";
 import { getSpeciesByRegion, getSpeciesByDate } from "../dataLoader";
@@ -19,6 +20,59 @@ const frenchMonths = [
   "novembre",
   "décembre",
 ];
+
+async function predictSwarmingByMonthAndLocation(month :string, location :string, interaction :CommandInteraction) {
+  const regionSpecies = getSpeciesByRegion(location);
+  const dateSpecies = getSpeciesByDate(month!);
+
+  if (!regionSpecies || !dateSpecies) 
+    return await interaction.reply(
+      `Aucun essaimage n'est prévu pour le département \`${location}\` au mois de \`${month}\`.`
+    );
+
+  const species = regionSpecies.filter((value) =>
+    dateSpecies.includes(value)
+  );
+
+  if (species.length === 0)
+    return await interaction.reply(
+      `Aucun essaimage n'est prévu pour le département \`${location}\` au mois de \`${month}\`.`
+    );
+
+  await interaction.reply(
+    `**Les essaimages prévus pour le département \`${location}\` au mois de \`${month}\` sont :**\n* *${species.join(
+      "*\n* *"
+    )}*`
+  );
+}
+
+async function predictSwarmingByMonth(month :string, interaction :CommandInteraction) {
+  const dateSpecies = getSpeciesByDate(month);
+  if (!dateSpecies)
+    return await interaction.reply(
+      `Aucun essaimage n'est prévu pour le mois de \`${month}\`.`
+    );
+
+  await interaction.reply(
+    `**Les essaimages prévus pour le mois de \`${month}\` sont :**\n*  *${dateSpecies!.join(
+      "*\n* *"
+    )}*`
+  );
+}
+
+async function predictSwarmingByLocation(location :string, interaction :CommandInteraction) {
+  const regionSpecies = getSpeciesByRegion(location);
+  if (!regionSpecies)
+    return await interaction.reply(
+      `Aucune espèce n'essaime dans le département \`${location}\`.`
+    );
+
+  await interaction.reply(
+    `**Les essaimages possibles pour le département \`${location}\` sont :**\n*  *${regionSpecies!.join(
+      "*\n* *"
+    )}*`
+  );
+}
 
 export const command: SlashCommand = {
   name: "essaimage",
@@ -54,85 +108,24 @@ export const command: SlashCommand = {
     let month = options.getString("mois")?.toLocaleLowerCase();
     const location = options.getString("region");
 
-    if (month) {
-      if (!frenchMonths.includes(month)) {
-        await interaction.reply("Veuillez indiquer un mois valide.");
-        return;
-      }
-    }
+    if (month && !frenchMonths.includes(month))
+      return await interaction.reply("Veuillez indiquer un mois valide.");
 
-    if (location) {
-      if (location.length !== 2) {
-        await interaction.reply(
-          "Veuillez indiquer un numéro de département valide."
-        );
-        return;
-      }
-    }
-
-    if (!location && !month) {
-      await interaction.reply("Veuillez indiquer un département ou un mois.");
-      return;
-    }
-
-    if (!location && month) {
-      const dateSpecies = getSpeciesByDate(month);
-      if (!dateSpecies) {
-        await interaction.reply(
-          `Aucun essaimage n'est prévu pour le mois de \`${month}\`.`
-        );
-        return;
-      }
-
-      await interaction.reply(
-        `**Les essaimages prévus pour le mois de \`${month}\` sont :**\n*  *${dateSpecies!.join(
-          "*\n* *"
-        )}*`
-      );
-      return;
-    } else if (!month && location) {
-      const regionSpecies = getSpeciesByRegion(location);
-      if (!regionSpecies) {
-        await interaction.reply(
-          `Aucune espèce n'essaime dans le département \`${location}\`.`
-        );
-        return;
-      }
-
-      await interaction.reply(
-        `**Les essaimages possibles pour le département \`${location}\` sont :**\n*  *${regionSpecies!.join(
-          "*\n* *"
-        )}*`
-      );
-      return;
-    } else {
-      const regionSpecies = getSpeciesByRegion(location);
-      const dateSpecies = getSpeciesByDate(month!);
-
-      if (!regionSpecies || !dateSpecies) {
-        await interaction.reply(
-          `Aucun essaimage n'est prévu pour le département \`${location}\` au mois de \`${month}\`.`
-        );
-        return;
-      }
-
-      const species = regionSpecies.filter((value) =>
-        dateSpecies.includes(value)
+    if (location?.length !== 2)
+      return await interaction.reply(
+        "Veuillez indiquer un numéro de département valide."
       );
 
-      if (species.length === 0) {
-        await interaction.reply(
-          `Aucun essaimage n'est prévu pour le département \`${location}\` au mois de \`${month}\`.`
-        );
-        return;
-      } else {
-        await interaction.reply(
-          `**Les essaimages prévus pour le département \`${location}\` au mois de \`${month}\` sont :**\n* *${species.join(
-            "*\n* *"
-          )}*`
-        );
-        return;
-      }
-    }
+    if (!location && !month)
+      return await interaction.reply("Veuillez indiquer un département ou un mois.");
+
+    if (location && month)
+      predictSwarmingByMonthAndLocation(month, location, interaction);
+    
+    if (month)
+      return predictSwarmingByMonth(month, interaction);
+    
+    if (location)
+      return predictSwarmingByLocation(location, interaction);
   },
 };
