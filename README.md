@@ -7,13 +7,13 @@ Ce bot Discord Français et Open-Source vous permet de trouver les espèces de f
 1. Cloner ce repository
 2. Installez les dépendances avec `npm install`
 3. Créez un fichier `.env` à la racine de votre projet avec les informations suivantes:
-```
-//.env
+```.env
+#.env
 TOKEN=//le_token_de_votre_bot_discord//
 CLIENT_ID=//uuid_de_votre_client_discord//
 ```
-5. Compilez les fichiers TypeScript en Javascript avec la commande `npx tsc`, l'option --watch permet de lancer la compilation en démon.
-6. Lancer le bot avec `npm run start`
+4. Compilez les fichiers TypeScript en Javascript avec la commande `npx tsc`, l'option --watch permet de lancer la compilation en démon.
+5. Lancer le bot avec `npm run start`
 
 ## Contribution
 
