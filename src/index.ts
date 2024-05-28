@@ -26,6 +26,7 @@ readdirSync(handlersDir).forEach(handler => {
   require(`${handlersDir}/${handler}`)(client);
 });
 
+// Load the data files
 loadData();
 
 // Schedule a backup of the data files every Sunday at midnight
