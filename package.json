@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/EAnathos/antSwarmingChecker#readme",
   "dependencies": {
+    "@types/node-schedule": "^2.1.7",
     "discord.js": "^14.15.2",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "node-schedule": "^2.1.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
