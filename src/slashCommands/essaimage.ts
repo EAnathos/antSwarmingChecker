@@ -1,7 +1,6 @@
 import {
   SlashCommandBuilder,
   CommandInteractionOptionResolver,
-  CommandInteraction,
 } from "discord.js";
 import { SlashCommand } from "../types";
 import { predictSwarming } from "@/utils/swarmPrediction";
