@@ -17,15 +17,16 @@ export const command: SlashCommand = {
     )
     .addStringOption(option => // Adding option for month
       option.setName("mois")
-        .setDescription("Indiquer le mois en question (en lettre, exemple: janvier)")
+        .setDescription("Indiquer le mois en question (en lettre, exemple : janvier)")
         .setRequired(true)
     ),
   execute: async (interaction) => {
     // Check if the user is allowed to use this command
     if (!whitelistUsers.includes(interaction.user.id)) {
       await interaction.reply({
-        content: "Vous n'avez pas la permission d'utiliser cette commande.",
-        ephemeral: true
+        content: `Vous n'avez pas la permission d'utiliser cette commande.
+        Contactez .anathos sur Discord si vous pensez que c'est une erreur`,
+        ephemeral: true,
       });
       return;
     }
