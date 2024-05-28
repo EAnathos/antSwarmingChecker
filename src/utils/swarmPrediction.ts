@@ -20,7 +20,7 @@ export function predictSwarming(month: string = "", area: string = ""): string {
  * @param {string} area - The name of the area.
  * @returns {string} The predicted species that will swarm.
  */
-function predictSwarmingByMonthAndArea(month: string, area: string) {
+export function predictSwarmingByMonthAndArea(month: string, area: string) {
   const areaSpecies = getSpeciesByArea(area);
   const dateSpecies = getSpeciesByDate(month!);
 
@@ -43,7 +43,7 @@ function predictSwarmingByMonthAndArea(month: string, area: string) {
   * @param {string} month - The name of the month.
   * @returns {string} The predicted species that will swarm.
   */
-function predictSwarmingByMonth(month: string) {
+export function predictSwarmingByMonth(month: string) {
   const dateSpecies = getSpeciesByDate(month);
   if (!dateSpecies)
     return `Aucun essaimage n'est prévu pour le mois de \`${month}\`.`;
@@ -59,7 +59,7 @@ function predictSwarmingByMonth(month: string) {
  * @param {string} area - The name of the area.
  * @returns {string} The predicted species that will swarm.
  */
-function predictSwarmingByArea(area: string) {
+export function predictSwarmingByArea(area: string) {
   const areaSpecies = getSpeciesByArea(area);
   if (!areaSpecies)
     return `Aucune espèce n'essaime dans le département \`${area}\`.`;

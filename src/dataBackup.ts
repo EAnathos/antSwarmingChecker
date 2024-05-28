@@ -7,7 +7,7 @@ import * as path from 'path';
  * @param {string} originalPath - The path of the file to copy.
  * @param {string} backupFolder - The path of the backup folder.
  */
-function copyAndRenameFile(originalPath: string, backupFolder: string) {
+export function copyAndRenameFile(originalPath: string, backupFolder: string) {
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
   const backupFilePath = path.join(backupFolder, `${formattedDate}.json`);
