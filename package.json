@@ -1,21 +1,27 @@
 {
-  "name": "discord-bot",
+  "name": "antswarmingchecker",
   "version": "1.0.0",
-  "description": "",
+  "description": "A discord bot made for listing ant swarmings",
   "main": "index.tsc",
   "scripts": {
-    "build": "npx tsc",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Pentiminax",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EAnathos/antSwarmingChecker.git"
+  },
+  "author": "EAnathos",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EAnathos/antSwarmingChecker/issues"
+  },
+  "homepage": "https://github.com/EAnathos/antSwarmingChecker#readme",
   "dependencies": {
-    "@types/node": "^18.11.9",
-    "discord.js": "^14.6.0",
-    "dotenv": "^16.0.3"
+    "discord.js": "^14.15.2",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "typescript": "^4.9.3"
+    "typescript": "^5.4.5"
   }
 }
