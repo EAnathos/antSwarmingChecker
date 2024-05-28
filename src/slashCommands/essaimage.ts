@@ -1,10 +1,9 @@
 import {
   SlashCommandBuilder,
   CommandInteractionOptionResolver,
-  CommandInteraction,
 } from "discord.js";
 import { SlashCommand } from "../types";
-import { getSpeciesByArea, getSpeciesByDate } from "../dataLoader";
+import { predictSwarming } from "../utils/swarmPrediction";
 
 const frenchMonths = [
   "janvier",
@@ -20,67 +19,6 @@ const frenchMonths = [
   "novembre",
   "décembre",
 ];
-
-async function predictSwarmingByMonthAndArea(
-  month: string,
-  area: string,
-  interaction: CommandInteraction
-) {
-  const areaSpecies = getSpeciesByArea(area);
-  const dateSpecies = getSpeciesByDate(month!);
-
-  if (!areaSpecies || !dateSpecies)
-    return await interaction.reply(
-      `Aucun essaimage n'est prévu pour le département \`${area}\` au mois de \`${month}\`.`
-    );
-
-  const species = areaSpecies.filter((value) => dateSpecies.includes(value));
-
-  if (species.length === 0)
-    return await interaction.reply(
-      `Aucun essaimage n'est prévu pour le département \`${area}\` au mois de \`${month}\`.`
-    );
-
-  await interaction.reply(
-    `**Les essaimages prévus pour le département \`${area}\` au mois de \`${month}\` sont :**\n* *${species.join(
-      "*\n* *"
-    )}*`
-  );
-}
-
-async function predictSwarmingByMonth(
-  month: string,
-  interaction: CommandInteraction
-) {
-  const dateSpecies = getSpeciesByDate(month);
-  if (!dateSpecies)
-    return await interaction.reply(
-      `Aucun essaimage n'est prévu pour le mois de \`${month}\`.`
-    );
-
-  await interaction.reply(
-    `**Les essaimages prévus pour le mois de \`${month}\` sont :**\n*  *${dateSpecies!.join(
-      "*\n* *"
-    )}*`
-  );
-}
-
-async function predictSwarmingByArea(
-  area: string,
-  interaction: CommandInteraction
-) {
-  const areaSpecies = getSpeciesByArea(area);
-  if (!areaSpecies)
-    return await interaction.reply(
-      `Aucune espèce n'essaime dans le département \`${area}\`.`
-    );
-
-  await interaction.reply(
-    `**Les essaimages possibles pour le département \`${area}\` sont :**\n*  *${areaSpecies!.join(
-      "*\n* *"
-    )}*`
-  );
-}
 
 export const command: SlashCommand = {
   name: "essaimage",
@@ -124,7 +62,14 @@ export const command: SlashCommand = {
       return;
     }
 
-    if (area && area?.length !== 2) area = "0" + area;
+    if (area && area?.length == 1) area = "0" + area;
+    if (area && area?.length != 2) {
+      await interaction.reply({
+        content: "Veuillez indiquer un département valide.",
+        ephemeral: true,
+      });
+      return;
+    }
 
     if (!area && !month) {
       await interaction.reply({
@@ -134,8 +79,6 @@ export const command: SlashCommand = {
       return;
     }
 
-    if (area && month) predictSwarmingByMonthAndArea(month, area, interaction);
-    else if (month) predictSwarmingByMonth(month, interaction);
-    else predictSwarmingByArea(area!, interaction);
+    await interaction.reply(predictSwarming(month, area!));
   },
 };
