@@ -21,7 +21,7 @@ const frenchMonths = [
   "décembre",
 ];
 
-async function predictSwarmingByMonthAndLocation(month :string, location :string, interaction :any) {
+async function predictSwarmingByMonthAndLocation(month :string, location :string, interaction :CommandInteraction) {
   const regionSpecies = getSpeciesByRegion(location);
   const dateSpecies = getSpeciesByDate(month!);
 
@@ -46,7 +46,7 @@ async function predictSwarmingByMonthAndLocation(month :string, location :string
   );
 }
 
-async function predictSwarmingByMonth(month :string, interaction :any) {
+async function predictSwarmingByMonth(month :string, interaction :CommandInteraction) {
   const dateSpecies = getSpeciesByDate(month);
   if (!dateSpecies)
     return await interaction.reply(
@@ -60,7 +60,7 @@ async function predictSwarmingByMonth(month :string, interaction :any) {
   );
 }
 
-async function predictSwarmingByLocation(location :string, interaction :any) {
+async function predictSwarmingByLocation(location :string, interaction :CommandInteraction) {
   const regionSpecies = getSpeciesByRegion(location);
   if (!regionSpecies)
     return await interaction.reply(
@@ -78,7 +78,7 @@ export const command: SlashCommand = {
   name: "essaimage",
   data: new SlashCommandBuilder()
     .setName("essaimage")
-    .setDescription("Liste les essaimages d'une région selon une date")
+    .setDescription("Liste les essaimages d'un département selon une date")
     .addStringOption(
       (
         option // Adding option for region
@@ -86,7 +86,7 @@ export const command: SlashCommand = {
         option
           .setName("region")
           .setDescription(
-            "Indiquer la région en question (en nombre, exemple : 01 pour Ain)"
+            "Indiquer le département en question (en nombre, exemple : 01 pour Ain)"
           )
           .setRequired(false)
     )
@@ -120,7 +120,7 @@ export const command: SlashCommand = {
       return await interaction.reply("Veuillez indiquer un département ou un mois.");
 
     if (location && month)
-      return predictSwarmingByMonthAndLocation(month, location, interaction);
+      predictSwarmingByMonthAndLocation(month, location, interaction);
     
     if (month)
       return predictSwarmingByMonth(month, interaction);
