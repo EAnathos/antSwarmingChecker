@@ -19,7 +19,7 @@ export const command: SlashCommand = {
             "Veuillez choisir le fichier de données que vous souhaitez voir`"
           )
           .addChoices(
-            { name: "Regions", value: "region" },
+            { name: "Départements", value: "area" },
             { name: "Dates", value: "date" }
           )
           .setRequired(true)
