@@ -1,0 +1,110 @@
+{
+  "01": [
+    "Aphaenogaster subterranea",
+    "Camponotus fallax",
+    "Camponotus herculeanus",
+    "Camponotus vagus",
+    "Cardiocondyla elegans",
+    "Colobopsis truncata",
+    "Dolichoderus quadripunctatus",
+    "Formica cunicularia",
+    "Formica fusca",
+    "Formica gagates"
+  ],
+  "02": [
+    "Aphaenogaster subterranea",
+    "Camponotus ligniperda",
+    "Colobopsis truncata",
+    "Formica clara",
+    "Formica cunicularia",
+    "Formica fusca",
+    "Formica polyctena",
+    "Formica pratensis",
+    "Formica rufa",
+    "Formica rufibarbis"
+  ],
+  "03": [
+    "Aphaenogaster subterranea",
+    "Camponotus aethiops",
+    "Camponotus fallax",
+    "Camponotus herculeanus",
+    "Camponotus ligniperda",
+    "Camponotus piceus",
+    "Camponotus vagus",
+    "Cardiocondyla elegans",
+    "Colobopsis truncata",
+    "Dolichoderus quadripunctatus"
+  ],
+  "04": [
+    "Aphaenogaster gibbosa",
+    "Aphaenogaster subterranea",
+    "Bothriomyrmex communistus",
+    "Bothriomyrmex corsicus",
+    "Camponotus aethiops",
+    "Camponotus cruentatus",
+    "Camponotus fallax",
+    "Camponotus herculeanus",
+    "Camponotus lateralis",
+    "Camponotus ligniperda"
+  ],
+  "05": [
+    "Anergates atratulum",
+    "Aphaenogaster gibbosa",
+    "Aphaenogaster subterranea",
+    "Camponotus aethiops",
+    "Camponotus cruentatus",
+    "Camponotus herculeanus",
+    "Camponotus lateralis",
+    "Camponotus ligniperda",
+    "Camponotus piceus",
+    "Camponotus vagus"
+  ],
+  "06": [
+    "Aphaenogaster gibbosa",
+    "Aphaenogaster ichnusa",
+    "Aphaenogaster subterranea",
+    "Bothriomyrmex corsicus",
+    "Camponotus aethiops",
+    "Camponotus cruentatus",
+    "Camponotus fallax",
+    "Camponotus herculeanus",
+    "Camponotus lateralis",
+    "Camponotus ligniperda"
+  ],
+  "07": [
+    "Anergates atratulum",
+    "Aphaenogaster ichnusa",
+    "Aphaenogaster subterranea",
+    "Camponotus aethiops",
+    "Camponotus cruentatus",
+    "Camponotus fallax",
+    "Camponotus herculeanus",
+    "Camponotus lateralis",
+    "Camponotus ligniperda",
+    "Camponotus piceus"
+  ],
+  "08": [
+    "Formica cunicularia",
+    "Formica fusca",
+    "Formica polyctena",
+    "Formica sanguinea",
+    "Lasius flavus",
+    "Lasius fuliginosus",
+    "Lasius niger",
+    "Lasius platythorax",
+    "Leptothorax acervorum",
+    "Myrmica rubra"
+  ],
+  "09": [
+    "Aphaenogaster gibbosa",
+    "Aphaenogaster subterranea",
+    "Camponotus aethiops",
+    "Camponotus herculeanus",
+    "Camponotus lateralis",
+    "Camponotus ligniperda",
+    "Camponotus piceus",
+    "Camponotus vagus",
+    "Colobopsis truncata",
+    "Crematogaster scutellaris"
+  ]
+}

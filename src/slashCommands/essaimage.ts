@@ -3,7 +3,7 @@ import {
   CommandInteractionOptionResolver,
 } from "discord.js";
 import { SlashCommand } from "../types";
-import { predictSwarming } from "@/utils/swarmPrediction";
+import { predictSwarming } from "../utils/swarmPrediction";
 
 const frenchMonths = [
   "janvier",
