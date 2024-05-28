@@ -4,7 +4,7 @@ import {
   CommandInteraction,
 } from "discord.js";
 import { SlashCommand } from "../types";
-import { getSpeciesByArea, getSpeciesByDate } from "../dataLoader";
+import { predictSwarming } from "@/utils/swarmPrediction";
 
 const frenchMonths = [
   "janvier",
@@ -20,43 +20,6 @@ const frenchMonths = [
   "novembre",
   "décembre",
 ];
-
-export function predictSwarmingByMonthAndArea(month: string, area: string) {
-  const areaSpecies = getSpeciesByArea(area);
-  const dateSpecies = getSpeciesByDate(month!);
-
-  if (!areaSpecies || !dateSpecies)
-    return `Aucun essaimage n'est prévu pour le département \`${area}\` au mois de \`${month}\`.`;
-
-  const species = areaSpecies.filter((value) => dateSpecies.includes(value));
-
-  if (species.length === 0)
-    return `Aucun essaimage n'est prévu pour le département \`${area}\` au mois de \`${month}\`.`;
-
-  return `**Les essaimages prévus pour le département \`${area}\` au mois de \`${month}\` sont :**\n* *${species.join(
-    "*\n* *"
-  )}*`;
-}
-
-export function predictSwarmingByMonth(month: string) {
-  const dateSpecies = getSpeciesByDate(month);
-  if (!dateSpecies)
-    return `Aucun essaimage n'est prévu pour le mois de \`${month}\`.`;
-
-  return `**Les essaimages prévus pour le mois de \`${month}\` sont :**\n*  *${dateSpecies!.join(
-    "*\n* *"
-  )}*`;
-}
-
-export function predictSwarmingByArea(area: string) {
-  const areaSpecies = getSpeciesByArea(area);
-  if (!areaSpecies)
-    return `Aucune espèce n'essaime dans le département \`${area}\`.`;
-
-  return `**Les essaimages possibles pour le département \`${area}\` sont :**\n*  *${areaSpecies!.join(
-    "*\n* *"
-  )}*`;
-}
 
 export const command: SlashCommand = {
   name: "essaimage",
@@ -100,7 +63,14 @@ export const command: SlashCommand = {
       return;
     }
 
-    if (area && area?.length !== 2) area = "0" + area;
+    if (area && area?.length == 1) area = "0" + area;
+    if (area && area?.length != 2) {
+      await interaction.reply({
+        content: "Veuillez indiquer un département valide.",
+        ephemeral: true,
+      });
+      return;
+    }
 
     if (!area && !month) {
       await interaction.reply({
@@ -110,9 +80,6 @@ export const command: SlashCommand = {
       return;
     }
 
-    if (area && month)
-      await interaction.reply(predictSwarmingByMonthAndArea(month, area));
-    else if (month) await interaction.reply(predictSwarmingByMonth(month));
-    else await interaction.reply(predictSwarmingByArea(area!));
+    await interaction.reply(predictSwarming(month, area!));
   },
 };
