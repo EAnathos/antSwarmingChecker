@@ -1,21 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 
-let speciesByRegion: Record<string, string[]> = {};
+let speciesByArea: Record<string, string[]> = {};
 let speciesByDate: Record<string, string[]> = {};
 
 /**
- * Load data from JSON files and initialize the speciesByRegion and speciesByDate objects.
- * This function also sorts the species lists in each region and date after loading.
+ * Load data from JSON files and initialize the speciesByArea and speciesByDate objects.
+ * This function also sorts the species lists in each area and date after loading.
  */
 export const loadData = () => {
-  const regionDataPath = path.join('./data', 'species_by_region.json');
+  const areaDataPath = path.join('./data', 'species_by_area.json');
   const dateDataPath = path.join('./data', 'species_by_date.json');
 
-  const regionData = fs.readFileSync(regionDataPath, 'utf-8');
-  speciesByRegion = JSON.parse(regionData);
-  for (const region in speciesByRegion) {
-    speciesByRegion[region].sort();
+  const areaData = fs.readFileSync(areaDataPath, 'utf-8');
+  speciesByArea = JSON.parse(areaData);
+  for (const area in speciesByArea) {
+    speciesByArea[area].sort();
   }
 
   const dateData = fs.readFileSync(dateDataPath, 'utf-8');
@@ -24,22 +24,22 @@ export const loadData = () => {
     speciesByDate[month].sort();
   }
 
-  regionDataSave();
+  areaDataSave();
   dateDataSave();
 };
 
 /**
- * Get the list of species for a given region.
+ * Get the list of species for a given area.
  *
- * @param {string} region - The name of the region.
- * @returns {string[]} The list of species in the specified region.
+ * @param {string} area - The name of the area.
+ * @returns {string[]} The list of species in the specified area.
  */
-export const getSpeciesByRegion = (region: string | null): string[] | null => {
-  if (!region) {
+export const getSpeciesByArea = (area: string | null): string[] | null => {
+  if (!area) {
     return null;
   }
 
-  return speciesByRegion[region] || null;
+  return speciesByArea[area] || null;
 };
 
 /**
@@ -95,37 +95,37 @@ export const removeSpecieByDate = (month: string, specie: string) => {
 }
 
 /**
- * Add a species to the list for a given region and save the updated data.
+ * Add a species to the list for a given area and save the updated data.
  *
- * @param {string} region - The name of the region.
+ * @param {string} area - The name of the area.
  * @param {string} specie - The name of the species to add.
  */
-export const addSpecieByRegion = (region: string, specie: string) => {
-  if (!speciesByRegion[region]) {
-    speciesByRegion[region] = [];
+export const addSpecieByArea = (area: string, specie: string) => {
+  if (!speciesByArea[area]) {
+    speciesByArea[area] = [];
   }
 
-  speciesByRegion[region].push(specie);
-  speciesByRegion[region].sort();
+  speciesByArea[area].push(specie);
+  speciesByArea[area].sort();
 
-  regionDataSave();
+  areaDataSave();
 }
 
 /**
- * Remove a species from the list for a given region and save the updated data.
+ * Remove a species from the list for a given area and save the updated data.
  *
- * @param {string} region - The name of the region.
+ * @param {string} area - The name of the area.
  * @param {string} specie - The name of the species to remove.
  */
-export const removeSpecieByRegion = (region: string, specie: string) => {
-  if (!speciesByRegion[region]) {
+export const removeSpecieByArea = (area: string, specie: string) => {
+  if (!speciesByArea[area]) {
     return;
   }
 
-  speciesByRegion[region] = speciesByRegion[region].filter(s => s !== specie);
-  speciesByRegion[region].sort();
+  speciesByArea[area] = speciesByArea[area].filter(s => s !== specie);
+  speciesByArea[area].sort();
 
-  regionDataSave();
+  areaDataSave();
 }
 
 /**
@@ -137,9 +137,9 @@ export const dateDataSave = () => {
 }
 
 /**
- * Save the speciesByRegion object to its JSON file.
+ * Save the speciesByArea object to its JSON file.
  */
-export const regionDataSave = () => {
-  const regionDataPath = path.join('./data', 'species_by_region.json');
-  fs.writeFileSync(regionDataPath, JSON.stringify(speciesByRegion, null, 2));
+export const areaDataSave = () => {
+  const areaDataPath = path.join('./data', 'species_by_area.json');
+  fs.writeFileSync(areaDataPath, JSON.stringify(speciesByArea, null, 2));
 }
