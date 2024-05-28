@@ -1,9 +1,11 @@
 import * as dotenv from 'dotenv';
+import * as schedule from 'node-schedule';
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
 import { SlashCommand } from './types';
 import { join } from 'path';
 import { readdirSync } from 'fs';
 import { loadData } from './dataLoader';
+import { backupFiles } from './dataBackup';
 
 dotenv.config();
 
@@ -25,5 +27,8 @@ readdirSync(handlersDir).forEach(handler => {
 });
 
 loadData();
+
+// Schedule a backup of the data files every Sunday at midnight
+schedule.scheduleJob('0 0 * * 0', backupFiles);
 
 client.login(process.env.TOKEN);
