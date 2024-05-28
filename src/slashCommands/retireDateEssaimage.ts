@@ -24,8 +24,9 @@ export const command: SlashCommand = {
     // Check if the user is allowed to use this command
     if (!whitelistUsers.includes(interaction.user.id)) {
       await interaction.reply({
-        content: "Vous n'avez pas la permission d'utiliser cette commande.",
-        ephemeral: true
+        content: `Vous n'avez pas la permission d'utiliser cette commande.
+        Contactez .anathos sur Discord si vous pensez que c'est une erreur`,
+        ephemeral: true,
       });
       return;
     }
