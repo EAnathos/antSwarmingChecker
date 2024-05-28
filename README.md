@@ -13,7 +13,7 @@ TOKEN=//le_token_de_votre_bot_discord//
 CLIENT_ID=//uuid_de_votre_client_discord//
 ```
 4. Compilez les fichiers TypeScript en Javascript avec la commande `npx tsc`, l'option --watch permet de lancer la compilation en démon.
-5. Lancer le bot avec `npm run start`
+5. Lancez le bot avec `npm run start`
 
 ### Précisions
 
@@ -34,6 +34,9 @@ Vous pouvez lancer les tests unitaires avec `npm run test`.
 
 Les contributions au code seront analysées, n'hésitez pas à faire des pull requests (vers dev) si vous avez la moindre suggestion ou fix de bugs.
 Vous pouvez aussi ajouter des informations aux datas concernant les dates d'essaimages.
+
+Merci à :
+- [Em-ilien](https://github.com/Em-ilien)
 
 ## License
 
