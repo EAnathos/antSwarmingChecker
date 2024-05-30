@@ -20,6 +20,23 @@ const frenchMonths = [
   "décembre",
 ];
 
+function normalizeString(str: string): string {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function correctMonth(input: string): string | null {
+  const normalizedInput = normalizeString(input);
+  for (const month of frenchMonths) {
+    if (normalizeString(month) === normalizedInput) {
+      return month;
+    }
+  }
+  return null;
+}
+
 export const command: SlashCommand = {
   name: "essaimage",
   data: new SlashCommandBuilder()
@@ -46,20 +63,32 @@ export const command: SlashCommand = {
             "Indiquer le mois en question (en lettre, exemple : août)"
           )
           .setRequired(false)
+    )
+    .addBooleanOption((option) =>
+      option
+        .setName("ephemère")
+        .setDescription(
+          "Si vous voulez que la réponse soit visible que par vous"
+        )
+        .setRequired(false)
     ),
   execute: async (interaction) => {
     const options = interaction.options as CommandInteractionOptionResolver;
 
     // Get month and area from the options
-    let month = options.getString("mois")?.toLocaleLowerCase();
+    let month = options.getString("mois");
     let area = options.getString("departement");
+    let ephemeral = options.getBoolean("ephemère");
 
-    if (month && !frenchMonths.includes(month)) {
-      await interaction.reply({
-        content: "Veuillez indiquer un mois valide.",
-        ephemeral: true,
-      });
-      return;
+    if (month) {
+      month = correctMonth(month);
+      if (!month) {
+        await interaction.reply({
+          content: "Veuillez indiquer un mois valide.",
+          ephemeral: true,
+        });
+        return;
+      }
     }
 
     if (area && area?.length == 1) area = "0" + area;
@@ -79,6 +108,11 @@ export const command: SlashCommand = {
       return;
     }
 
-    await interaction.reply(predictSwarming(month, area!));
+    if (ephemeral !== true) ephemeral = false;
+
+    await interaction.reply({
+      content: predictSwarming(month!, area!),
+      ephemeral: ephemeral,
+    });
   },
 };
