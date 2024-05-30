@@ -38,11 +38,11 @@ export function predictSwarmingByMonthAndArea(month: string, area: string) {
 }
 
 /*
-  * Predict the species that will swarm in a given month.
-  *
-  * @param {string} month - The name of the month.
-  * @returns {string} The predicted species that will swarm.
-  */
+ * Predict the species that will swarm in a given month.
+ *
+ * @param {string} month - The name of the month.
+ * @returns {string} The predicted species that will swarm.
+ */
 export function predictSwarmingByMonth(month: string) {
   const dateSpecies = getSpeciesByDate(month);
   if (!dateSpecies)
@@ -60,11 +60,6 @@ export function predictSwarmingByMonth(month: string) {
  * @returns {string} The predicted species that will swarm.
  */
 export function predictSwarmingByArea(area: string) {
-  const areaSpecies = getSpeciesByArea(area);
-  if (!areaSpecies)
-    return `Aucune espèce n'essaime dans le département \`${area}\`.`;
-
-  return `**Les essaimages possibles pour le département \`${area}\` sont :**\n*  *${areaSpecies!.join(
-    "*\n* *"
-  )}*`;
+  return `La liste est potentiellement longue, je vous renvoie directement au site d'Antarea avec le bon lien.
+  \n https://antarea.fr/fourmi/?repartition/departements.html?departement=${area}`;
 }
