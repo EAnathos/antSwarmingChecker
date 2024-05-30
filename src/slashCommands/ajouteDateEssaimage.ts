@@ -3,7 +3,7 @@ import {
   CommandInteractionOptionResolver,
 } from "discord.js";
 import { SlashCommand } from "../types";
-import { addSpecieByDate } from "../dataLoader";
+import { addSpecieByDate } from "../utils/dataLoader";
 
 // Whitelist of users allowed to use this command (by Discord ID).
 const whitelistUsers = ["306816615650033664"];

@@ -4,8 +4,8 @@ import { Client, Collection, GatewayIntentBits } from 'discord.js';
 import { SlashCommand } from './types';
 import { join } from 'path';
 import { readdirSync } from 'fs';
-import { loadData } from './dataLoader';
-import { backupFiles } from './dataBackup';
+import { loadData } from './utils/dataLoader';
+import { backupFiles } from './utils/dataBackup';
 
 dotenv.config();
 

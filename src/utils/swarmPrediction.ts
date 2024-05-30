@@ -1,4 +1,4 @@
-import { getSpeciesByArea, getSpeciesByDate } from "../dataLoader";
+import { getSpeciesByArea, getSpeciesByDate } from "./dataLoader";
 
 /**
  * Predict the species that will swarm in a given month and area.
