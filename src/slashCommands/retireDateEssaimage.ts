@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, CommandInteractionOptionResolver } from 'discord.js';
 import { SlashCommand } from '../types';
-import { removeSpecieByDate } from '../dataLoader';
+import { removeSpecieByDate } from '../utils/dataLoader';
 
 // Whitelist of users allowed to use this command (by Discord ID).
 const whitelistUsers = ["306816615650033664"]
